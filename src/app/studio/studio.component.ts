@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { UvEngineService } from '../uv-engine.service';
 import { Model } from './model';
 import { ModelPoint } from './model-point';
+import { ModelSubjectService } from '../model-subject.service';
 
 @Component({
   selector: 'app-studio',
@@ -14,15 +15,17 @@ export class StudioComponent implements OnInit {
   @ViewChild('rendererCanvas', {static: true})
   public rendererCanvas: ElementRef<HTMLCanvasElement>;
 
-  @Input()
-  private model: Model;
-
-  constructor(private el:ElementRef, private uvEngineService: UvEngineService) { }
+  constructor(private el:ElementRef, private uvEngineService: UvEngineService, private modelSubjectService: ModelSubjectService) { }
 
   ngOnInit() {
-    this.draw(this.model.name, this.model.a, this.model.b, this.model.h);
-    //this.fruityPebble();
-    this.uvEngineService.render();
+    const model = this.modelSubjectService.model().subscribe((model) => {
+      if(model){
+        this.draw(model.name, model.a, model.b, model.h);
+        //this.fruityPebble();
+        this.uvEngineService.render();
+      }
+    })
+    
   }
   draw(image: string, a: ModelPoint, b: ModelPoint, h: ModelPoint) {
     const dw = b.x - a.x;

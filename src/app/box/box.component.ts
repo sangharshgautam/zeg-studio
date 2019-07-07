@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModelPoint } from '../studio/model-point';
 import { Model } from '../studio/model';
+import { BehaviorSubject } from 'rxjs';
+import { ModelSubjectService } from '../model-subject.service';
 
 @Component({
   selector: 'app-box',
@@ -18,17 +20,18 @@ export class BoxComponent implements OnInit {
   ];
   isVisible = false;
 
-  selectedModel: Model = this.listOfData[4];
-
-  constructor() { }
+  constructor(private modelSubjectService: ModelSubjectService) { }
 
   ngOnInit() {
   }
   showModel(model: Model): void {
-    this.selectedModel = model;
+    this.modelSubjectService.load(model);
     this.isVisible = true;
   }
   handleCancel(): void {
     this.isVisible = false;
+  }
+  handleOk(): void{
+    this.handleCancel();
   }
 }
