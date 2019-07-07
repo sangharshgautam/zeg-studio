@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { UvEngineService } from '../uv-engine.service';
+import { Model } from './model';
+import { ModelPoint } from './model-point';
 
 @Component({
   selector: 'app-studio',
@@ -9,18 +11,24 @@ import { UvEngineService } from '../uv-engine.service';
 export class StudioComponent implements OnInit {
 
   scale = 1.5;
-  length = 2.32;
-  width = 1;
-  height = 3.83;
-
   @ViewChild('rendererCanvas', {static: true})
   public rendererCanvas: ElementRef<HTMLCanvasElement>;
 
-  constructor(private uvEngineService: UvEngineService) { }
+  @Input()
+  private model: Model;
+
+  constructor(private el:ElementRef, private uvEngineService: UvEngineService) { }
 
   ngOnInit() {
-    this.fruityPebble();
+    this.draw(this.model.name, this.model.a, this.model.b, this.model.h);
+    //this.fruityPebble();
     this.uvEngineService.render();
+  }
+  draw(image: string, a: ModelPoint, b: ModelPoint, h: ModelPoint) {
+    const dw = b.x - a.x;
+    const dl = h.x - b.x;
+    const dh = h.y - a.y;
+    this.uvEngineService.createScene(this.rendererCanvas, a, dw, dl, dh, this.scale, 'sample/textures/box/'+image+'.jpg');
   }
   fruityPebble(){
     const a = {x: 43, y: 137};
@@ -32,7 +40,7 @@ export class StudioComponent implements OnInit {
     
   }
   luckyCharm(){
-    const a = {x: 86, y: 135};
+    const a = {x: 43, y: 137};
     const dw = 220 - a.x;
     const dl = 534 - 220;
     const dh = 660 - a.y;

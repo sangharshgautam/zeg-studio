@@ -28,7 +28,7 @@ export class UvEngineService implements OnDestroy{
       alpha: true,    // transparent background
       antialias: true // smooth edges
     });
-    this.renderer.setSize(700, 500);
+    this.renderer.setSize(900, 700);
 
     // create the scene
     this.scene = new THREE.Scene();
