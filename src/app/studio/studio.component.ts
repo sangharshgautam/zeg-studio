@@ -11,7 +11,11 @@ import { ModelSubjectService } from '../model-subject.service';
 })
 export class StudioComponent implements OnInit {
 
-  scale = 1.5;
+
+
+  @Input()
+  scale = 1.0;
+  
   @ViewChild('rendererCanvas', {static: true})
   public rendererCanvas: ElementRef<HTMLCanvasElement>;
 
@@ -51,5 +55,8 @@ export class StudioComponent implements OnInit {
     this.uvEngineService.createScene(this.rendererCanvas, a, dw, dl, dh, this.scale, 'sample/textures/box/Lucky Charms Chocolate Cereal.jpg');
     
     
+  }
+  scaleGeometry(){
+    this.uvEngineService.scale(this.scale);
   }
 }

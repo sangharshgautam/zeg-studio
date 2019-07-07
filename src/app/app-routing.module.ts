@@ -6,7 +6,7 @@ import { StudioComponent } from './studio/studio.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'scratchpad', pathMatch: 'full'},
+  {path: '', redirectTo: 'uv/box', pathMatch: 'full'},
   { path: 'scratchpad', component: ScratchpadComponent},
   { path: 'uv/box', component: BoxComponent},
   { path: 'studio', component: StudioComponent}

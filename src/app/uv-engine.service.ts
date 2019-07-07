@@ -161,4 +161,10 @@ export class UvEngineService implements OnDestroy{
       cancelAnimationFrame(this.frameId);
     }
   }
+  scale(scale: number){
+    this.cube.scale.x = scale;
+    this.cube.scale.y = scale;
+    this.cube.scale.z = scale;
+    this.render();
+  }
 }

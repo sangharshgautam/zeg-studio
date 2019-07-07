@@ -1,3 +1,17 @@
 <div class="engine-wrapper">
+<nz-row>
+    <nz-col nzSpan="12">
+        <nz-slider [nzMin]="1" [nzMax]="20" [(ngModel)]="scale"></nz-slider>
+    </nz-col>
+    <div nz-col nzSpan="4">
+        <nz-input-number
+        [nzMin]="1"
+        [nzMax]="20"
+        [ngStyle]="{ marginLeft: '16px' }"
+        [(ngModel)]="scale"
+        (ngModelChange)="scaleGeometry()"
+        ></nz-input-number>
+    </div>
+</nz-row>
 <canvas #rendererCanvas></canvas>
 </div>
