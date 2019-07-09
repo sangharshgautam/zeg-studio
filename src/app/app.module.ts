@@ -16,6 +16,7 @@ import { BoxComponent } from './box/box.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { StudioComponent } from './studio/studio.component';
+import { BoxWizardComponent } from './box-wizard/box-wizard.component';
 
 registerLocaleData(en);
 
@@ -28,7 +29,8 @@ registerLocaleData(en);
     BoxComponent,
     SideNavComponent,
     BreadcrumbComponent,
-    StudioComponent
+    StudioComponent,
+    BoxWizardComponent
   ],
   imports: [
     BrowserModule,
