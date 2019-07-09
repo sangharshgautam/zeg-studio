@@ -83,7 +83,8 @@ export class BoxWizardComponent implements OnInit {
   test(event) {
     console.log(event);
   }
-  onFileSelect(evt: Event) {
+  onFileSelect(evt) {
+    console.log(typeof(evt));
     const canvas = document.getElementById('test-canvas') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -109,14 +110,14 @@ export class BoxWizardComponent implements OnInit {
       }
     });
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = (event: Event) => {
       const image = new Image();
       image.onload = () => {
         canvas.width = image.width;
         canvas.height = image.height;
         ctx.drawImage(image, 0, 0);
       };
-      image.src = event.target.result;
+      image.src = reader.result as string;
     };
     reader.readAsDataURL(evt.target.files[0]);
     this.model = new Model(URL.createObjectURL(evt.target.files[0]));
