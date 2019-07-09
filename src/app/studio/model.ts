@@ -1,9 +1,6 @@
 import { ModelPoint } from './model-point';
 
 export class Model {
-    private _a: ModelPoint;
-    private _b: ModelPoint;
-    private _h: ModelPoint;
     constructor(private _name: string, private _a?: ModelPoint, private _b?: ModelPoint, private _h?: ModelPoint){}
     get name() {
         return this._name;
