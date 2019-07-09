@@ -1,0 +1,33 @@
+<p> Wizard to Generate Box model using Wizard</p>
+<nz-steps [nzCurrent]="current">
+    <nz-step nzTitle="Upload"></nz-step>
+    <nz-step nzTitle="Map"></nz-step>
+    <nz-step nzTitle="Generate"></nz-step>
+</nz-steps>
+
+<div class="steps-content">
+    <div [hidden]="current!=0">
+        <input type="file" (change)="onFileSelect($event)">
+        <!-- <nz-upload nzAction="/fake/upload"
+        [nzBeforeUpload]="onFileSelect">
+            <button nz-button><i nz-icon nzType="upload"></i><span>Click to Upload</span></button>
+        </nz-upload>   -->
+    </div>
+    <div [hidden]="current != 1">
+        <canvas id="test-canvas"></canvas>
+    </div>
+    <div [hidden]="current != 2">
+        <app-studio></app-studio>
+    </div>
+</div>
+    <div class="steps-action">
+    <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+        <span>Previous</span>
+    </button>
+    <button nz-button nzType="default" (click)="next()" *ngIf="current < 2">
+        <span>Next</span>
+    </button>
+    <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
+        <span>Done</span>
+    </button>
+</div>
