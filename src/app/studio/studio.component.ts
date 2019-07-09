@@ -15,7 +15,7 @@ export class StudioComponent implements OnInit {
 
   @Input()
   scale = 1.0;
-  
+
   @ViewChild('rendererCanvas', {static: true})
   public rendererCanvas: ElementRef<HTMLCanvasElement>;
 
@@ -35,7 +35,7 @@ export class StudioComponent implements OnInit {
     const dw = b.x - a.x;
     const dl = h.x - b.x;
     const dh = h.y - a.y;
-    this.uvEngineService.createScene(this.rendererCanvas, a, dw, dl, dh, this.scale, 'sample/textures/box/'+image+'.jpg');
+    this.uvEngineService.createScene(this.rendererCanvas, a, dw, dl, dh, this.scale, image);
   }
   fruityPebble(){
     const a = {x: 43, y: 137};
