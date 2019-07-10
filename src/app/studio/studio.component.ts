@@ -18,6 +18,8 @@ export class StudioComponent implements OnInit {
 
   @ViewChild('rendererCanvas', {static: true})
   public rendererCanvas: ElementRef<HTMLCanvasElement>;
+  
+  size = 'large';
 
   constructor(private el:ElementRef, private uvEngineService: UvEngineService, private modelSubjectService: ModelSubjectService) { }
 
