@@ -23,13 +23,11 @@ export class StudioComponent implements OnInit {
 
   ngOnInit() {
     const model = this.modelSubjectService.model().subscribe((model) => {
-      if(model){
+      if (model){
         this.draw(model.name, model.a, model.b, model.h);
-        //this.fruityPebble();
         this.uvEngineService.render();
       }
     })
-    
   }
   draw(image: string, a: ModelPoint, b: ModelPoint, h: ModelPoint) {
     const dw = b.x - a.x;
@@ -37,26 +35,10 @@ export class StudioComponent implements OnInit {
     const dh = h.y - a.y;
     this.uvEngineService.createScene(this.rendererCanvas, a, dw, dl, dh, this.scale, image);
   }
-  fruityPebble(){
-    const a = {x: 43, y: 137};
-    const dw = 173 - a.x;
-    const dl = 534 - 173;
-    const dh = 662 - a.y;
-
-    this.uvEngineService.createScene(this.rendererCanvas, a, dw, dl, dh, this.scale, 'sample/textures/box/Fruity Pebbles Marshmallow Cereal.jpg');
-    
-  }
-  luckyCharm(){
-    const a = {x: 43, y: 137};
-    const dw = 220 - a.x;
-    const dl = 534 - 220;
-    const dh = 660 - a.y;
-
-    this.uvEngineService.createScene(this.rendererCanvas, a, dw, dl, dh, this.scale, 'sample/textures/box/Lucky Charms Chocolate Cereal.jpg');
-    
-    
-  }
   scaleGeometry(){
     this.uvEngineService.scale(this.scale);
+  }
+  export(format: string){
+    this.uvEngineService.export(format);
   }
 }
