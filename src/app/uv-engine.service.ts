@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import * as THREEFULL from 'three-full';
 import { OrbitControls } from 'three-orbitcontrols-ts';
 import { Injectable, ElementRef, NgZone, OnDestroy } from '@angular/core';
 
@@ -63,7 +64,7 @@ export class UvEngineService implements OnDestroy{
   }
   loadTextureMaterialColor(){
     const matAray = new Array<THREE.MeshBasicMaterial>();
-    for(let i = 0; i<6 ;i ++) {
+    for(let i = 0; i < 6 ; i ++) {
       matAray[i] = new THREE.MeshBasicMaterial({color: '#000000'});
     }
     return matAray;
@@ -127,6 +128,7 @@ export class UvEngineService implements OnDestroy{
         texture.image = canvas;
         texture.needsUpdate = true;
       };
+      console.log(imageSrc);
       image.src = imageSrc;
     }
     return new THREE.MeshBasicMaterial({map: texture});
@@ -168,5 +170,48 @@ export class UvEngineService implements OnDestroy{
     this.cube.scale.y = scale;
     this.cube.scale.z = scale;
     this.render();
+  }
+  export(format: string){
+    switch (format) {
+      case 'GLTF': {
+        this.exportUsing(new THREEFULL.GLTFExporter());
+        break;
+      }
+      default : {
+        this.exportUsing(new THREEFULL.OBJExporter());
+        break;
+      }
+    }
+  }
+  exportUsing(exporter) {
+    console.log(exporter);
+    const options = {
+      trs: true,
+      onlyVisible: false,
+      binary: false,
+      truncateDrawRange : false,
+      forceIndices : true,
+      forcePowerOfTwoTextures : true
+    };
+    // Parse the input and generate the glTF output
+    exporter.parse([this.scene, this.cube], (result) => {
+      if (result instanceof ArrayBuffer) {
+         this.downloadArrayBuffer(result, 'model.glb');
+      } else {
+        this.downloadString(result, 'model.gltf');
+      }
+    }, options);
+  }
+  downloadString(text, filename){
+    this.downloadJSON(new Blob([JSON.stringify(text)], {type: 'text/json'}), filename);
+  }
+  downloadArrayBuffer(buffer, filename){
+    this.downloadJSON(new Blob([buffer], {type: 'application/octet-stream'}), filename);
+  }
+  downloadJSON(blob: Blob, filename: string) {
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
   }
 }
