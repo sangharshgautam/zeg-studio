@@ -1,5 +1,13 @@
 <div class="engine-wrapper">
-<nz-row>
+    <nz-row>
+        <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('GLTF')">
+            <i nz-icon nzType="download"></i>GLTF
+        </button>
+        <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('OBJ')">
+            <i nz-icon nzType="download"></i>OBJ
+        </button>
+    </nz-row>
+    <nz-row>
     <nz-col nzSpan="12">
         <nz-slider [nzMin]="1" [nzMax]="20" [(ngModel)]="scale"></nz-slider>
     </nz-col>
