@@ -10,31 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
-  displayName: 'npm install and build'
-
 - task: CmdLine@2
   inputs:
-    script: 'node_modules/protractor/bin/webdriver-manager update'
-  displayName: 'Update webdriver'
-
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'run e2e:ci'
-  displayName: 'Run E2E'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'dist'
-    ArtifactName: 'zeg-studio'
-    publishLocation: 'Container'
-  displayName: 'Publish artifact: Zeg Studio'
+    script: 'sudo yum -y install google-chrome-stable'
+    failOnStderr: true
+  displayName: 'Install Chrome'
