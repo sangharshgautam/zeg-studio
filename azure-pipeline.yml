@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'vs2017-win2016'
 
 steps:
 - task: NodeTool@0
@@ -25,19 +25,6 @@ steps:
   inputs:
     script: 'node_modules/protractor/bin/webdriver-manager update'
   displayName: 'Update webdriver'
-
-- task: CmdLine@2
-  inputs:
-    script: 'sudo yum -y install google-chrome-stable'
-    failOnStderr: true
-  displayName: 'Download Chrome'
-
-- task: CmdLine@2
-  inputs:
-    script: 'sudo dpkg -i google-chrome-stable_current_amd64.deb'
-    failOnStderr: true
-  displayName: 'Install Chrome'
-
 
 - task: Npm@1
   inputs:
