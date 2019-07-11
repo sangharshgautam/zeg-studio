@@ -12,6 +12,6 @@ pool:
 steps:
 - task: CmdLine@2
   inputs:
-    script: 'sudo yum -y install google-chrome-stable'
+    script: 'wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
     failOnStderr: true
   displayName: 'Install Chrome'
