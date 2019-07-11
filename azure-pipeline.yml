@@ -21,6 +21,11 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 
+- task: CmdLine@2
+  inputs:
+    script: 'node node_modules\protractor\bin\webdriver-manager update'
+  displayName: 'Update webdriver'
+
 - task: Npm@1
   inputs:
     command: 'custom'
