@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { StudioComponent } from './studio/studio.component';
 import { BoxWizardComponent } from './box-wizard/box-wizard.component';
+import { GloalErrorHandler } from './global-error-handler';
 
 registerLocaleData(en);
 
@@ -40,7 +41,10 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: ErrorHandler, useClass: GloalErrorHandler}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
