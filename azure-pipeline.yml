@@ -26,6 +26,12 @@ steps:
     script: 'node_modules/protractor/bin/webdriver-manager update'
   displayName: 'Update webdriver'
 
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'run e2e:ci'
+  displayName: 'Run E2E'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: 'dist'
