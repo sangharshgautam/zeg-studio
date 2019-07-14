@@ -29,8 +29,8 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    customCommand: 'run e2e:ci'
-  displayName: 'Run E2E'
+    customCommand: 'npm run test'
+  displayName: 'Karma test'
 
 - task: PublishBuildArtifacts@1
   inputs:
