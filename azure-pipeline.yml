@@ -20,6 +20,7 @@ steps:
     npm install @angular-devkit/build-angular
     npm install
     ng build --prod
+    ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
   displayName: 'npm install and build'
 
 # - task: CmdLine@2
@@ -28,6 +29,7 @@ steps:
 #  displayName: 'Update webdriver'
 
 - script: |
+    npm install @angular-devkit/build-angular
     ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
   displayName: 'Karma test'
 
