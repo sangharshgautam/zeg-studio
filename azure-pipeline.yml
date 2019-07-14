@@ -21,16 +21,30 @@ steps:
     ng build --prod
   displayName: 'npm install and build'
 
-- task: CmdLine@2
-  inputs:
-    script: 'node node_modules\protractor\bin\webdriver-manager update'
-  displayName: 'Update webdriver'
+# - task: CmdLine@2
+#   inputs:
+#     script: 'node node_modules\protractor\bin\webdriver-manager update'
+#  displayName: 'Update webdriver'
 
 - task: Npm@1
   inputs:
     command: 'custom'
     customCommand: 'npm run test'
   displayName: 'Karma test'
+
+# Publish Test Results
+# Publish test results to Azure Pipelines
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
+    testResultsFiles: '**/TEST-*.xml' 
+    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
+    #mergeTestResults: false # Optional
+    #failTaskOnFailedTests: false # Optional
+    #testRunTitle: # Optional
+    #buildPlatform: # Optional
+    #buildConfiguration: # Optional
+    #publishRunAttachments: true # Optional
 
 - task: PublishBuildArtifacts@1
   inputs:
