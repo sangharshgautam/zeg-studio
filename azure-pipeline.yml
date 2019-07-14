@@ -18,6 +18,7 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install @angular-devkit/build-angular
+    ng update @angular/cli @angular/core
     npm install
     ng build --prod
     ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
