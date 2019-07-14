@@ -17,24 +17,42 @@ steps:
 
 - script: |
     npm install -g @angular/cli
+    npm install @angular-devkit/build-angular
     npm install
     ng build --prod
   displayName: 'npm install and build'
 
-- task: CmdLine@2
-  inputs:
-    script: 'node node_modules\protractor\bin\webdriver-manager update'
-  displayName: 'Update webdriver'
+# - task: CmdLine@2
+#   inputs:
+#     script: 'node node_modules\protractor\bin\webdriver-manager update'
+#  displayName: 'Update webdriver'
 
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'run e2e:ci'
-  displayName: 'Run E2E'
+- script: |
+    npm install @angular-devkit/build-angular
+  displayName: 'Install angular-devkit'
 
-- task: PublishBuildArtifacts@1
+- script: |
+    ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
+  displayName: 'Karma test'
+
+
+# Publish Test Results
+# Publish test results to Azure Pipelines
+- task: PublishTestResults@2
   inputs:
-    PathtoPublish: 'dist'
-    ArtifactName: 'zeg-studio'
-    publishLocation: 'Container'
-  displayName: 'Publish artifact: Zeg Studio'
+    testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
+    testResultsFiles: '**/TEST-*.xml' 
+    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
+    #mergeTestResults: false # Optional
+    #failTaskOnFailedTests: false # Optional
+    #testRunTitle: # Optional
+    #buildPlatform: # Optional
+    #buildConfiguration: # Optional
+    #publishRunAttachments: true # Optional
+
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: 'dist'
+#     ArtifactName: 'zeg-studio'
+#     publishLocation: 'Container'
+#   displayName: 'Publish artifact: Zeg Studio'
