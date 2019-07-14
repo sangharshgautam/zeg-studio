@@ -28,9 +28,10 @@ steps:
 #     script: 'node node_modules\protractor\bin\webdriver-manager update'
 #  displayName: 'Update webdriver'
 
-- script: |
-    npm install @angular-devkit/build-angular
-    ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'run test:ci'
   displayName: 'Karma test'
 
 # Publish Test Results
