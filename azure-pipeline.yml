@@ -21,7 +21,6 @@ steps:
     ng update @angular/cli @angular/core
     npm install
     ng build --prod
-    ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
   displayName: 'npm install and build'
 
 # - task: CmdLine@2
