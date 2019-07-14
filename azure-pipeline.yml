@@ -17,6 +17,7 @@ steps:
 
 - script: |
     npm install -g @angular/cli
+    npm install @angular-devkit/build-angular
     npm install
     ng build --prod
   displayName: 'npm install and build'
@@ -27,7 +28,6 @@ steps:
 #  displayName: 'Update webdriver'
 
 - script: |
-    npm install @angular-devkit/build-angular
     ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
   displayName: 'Karma test'
 
