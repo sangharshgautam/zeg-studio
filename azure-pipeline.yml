@@ -50,9 +50,9 @@ steps:
     #buildConfiguration: # Optional
     #publishRunAttachments: true # Optional
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'dist'
-    ArtifactName: 'zeg-studio'
-    publishLocation: 'Container'
-  displayName: 'Publish artifact: Zeg Studio'
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: 'dist'
+#     ArtifactName: 'zeg-studio'
+#     publishLocation: 'Container'
+#   displayName: 'Publish artifact: Zeg Studio'
