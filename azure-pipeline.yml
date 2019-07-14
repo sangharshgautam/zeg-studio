@@ -19,14 +19,21 @@ steps:
     npm install -g @angular/cli
     npm install @angular-devkit/build-angular
     npm install
-    ng build
-    ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
+    ng build --prod
   displayName: 'npm install and build'
 
 # - task: CmdLine@2
 #   inputs:
 #     script: 'node node_modules\protractor\bin\webdriver-manager update'
 #  displayName: 'Update webdriver'
+
+- script: |
+    npm install @angular-devkit/build-angular
+  displayName: 'Install angular-devkit'
+
+- script: |
+    ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
+  displayName: 'Karma test'
 
 
 # Publish Test Results
