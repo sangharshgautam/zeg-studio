@@ -18,7 +18,6 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install @angular-devkit/build-angular
-    ng update @angular/cli @angular/core
     npm install
     ng build --prod
   displayName: 'npm install and build'
@@ -28,11 +27,13 @@ steps:
 #     script: 'node node_modules\protractor\bin\webdriver-manager update'
 #  displayName: 'Update webdriver'
 
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'run test:ci'
+- script: |
+    npm install -g @angular/cli
+    npm install @angular-devkit/build-angular
+    npm install
+    ng ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
   displayName: 'Karma test'
+
 
 # Publish Test Results
 # Publish test results to Azure Pipelines
