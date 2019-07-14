@@ -27,8 +27,8 @@ steps:
 #  displayName: 'Update webdriver'
 
 - script: |
-    npm install --save-dev @angular-devkit/build-angular
-    npm run test:ci
+    npm install @angular-devkit/build-angular
+    ng test --watch=false --reporters junit,dots --browsers ChromeHeadless --code-coverage
   displayName: 'Karma test'
 
 # Publish Test Results
