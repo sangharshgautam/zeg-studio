@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import * as THREEFULL from 'three-full';
+import GLTFExporter from 'three-gltf-exporter';
+import OBJExporter from 'three-obj-exporter';
 import { OrbitControls } from 'three-orbitcontrols-ts';
 import { Injectable, ElementRef, NgZone, OnDestroy } from '@angular/core';
 
@@ -43,7 +44,7 @@ export class UvEngineService implements OnDestroy{
     this.scene.add(this.camera);
 
     // Axis helper
-    this.scene.add(new THREE.AxesHelper(20));
+    //this.scene.add(new THREE.AxesHelper(20));
 
     // soft white light
     this.light = new THREE.AmbientLight( 0x404040 );
@@ -175,24 +176,23 @@ export class UvEngineService implements OnDestroy{
   export(format: string){
     switch (format) {
       case 'GLTF': {
-        this.exportUsing(new THREEFULL.GLTFExporter());
+        this.exportUsing(new GLTFExporter());
         break;
       }
       default : {
-        this.exportUsing(new THREEFULL.OBJExporter());
+        this.exportUsing(new OBJExporter());
         break;
       }
     }
   }
   exportUsing(exporter) {
-    console.log(exporter);
     const options = {
       trs: true,
       onlyVisible: false,
-      binary: false,
+      binary: true,
       truncateDrawRange : false,
-      forceIndices : true,
-      forcePowerOfTwoTextures : true
+      forceIndices : false,
+      forcePowerOfTwoTextures : false
     };
     // Parse the input and generate the glTF output
     exporter.parse([this.scene, this.cube], (result) => {
