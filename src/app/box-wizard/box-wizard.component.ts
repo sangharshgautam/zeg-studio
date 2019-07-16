@@ -27,14 +27,19 @@ export class BoxWizardComponent implements OnInit {
   }
   ngOnInit2() {
     const canvas = document.getElementById('test-canvas') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d');
     canvas.addEventListener('click', (e) => {
       let x = e.pageX;
       x -= canvas.offsetLeft;
-      console.log(x);
       let y = e.pageY;
       y -= canvas.offsetTop;
+      // ctx.beginPath();
+      // ctx.moveTo(x-100, y-100);
+      // ctx.lineTo(x + 100, y + 100);
+      // ctx.stroke();
       const point = new ModelPoint(x, y);
       if (this.counter  === 0) {
+        console.log(x + ' , '+ y);
         this.model.a = new ModelPoint(x, y);
       }
       if (this.counter  === 1) {
@@ -49,7 +54,7 @@ export class BoxWizardComponent implements OnInit {
       this.counter++;
     });
     // document.body.appendChild(canvas);
-    const ctx = canvas.getContext('2d');
+    
     // const reader = new FileReader();
     // reader.onload = (event) => {
     const image = new Image();
