@@ -20,6 +20,6 @@
       </tr>
     </tbody>
   </nz-table>
-  <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzStyle]="{ top: '0px' }" nzWidth="100%" nzHeight="100%">
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzWidth="80%" nzHeight="80%" nzWrapClassName="vertical-center-modal">
     <app-studio></app-studio>
   </nz-modal>

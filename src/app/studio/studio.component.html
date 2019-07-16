@@ -1,25 +1,44 @@
-<div class="engine-wrapper">
-    <nz-row>
-        <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('GLTF')">
-            <i nz-icon nzType="download"></i>GLTF
-        </button>
-        <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('OBJ')">
-            <i nz-icon nzType="download"></i>OBJ
-        </button>
-    </nz-row>
-    <nz-row>
-    <nz-col nzSpan="12">
-        <nz-slider [nzMin]="1" [nzMax]="20" [(ngModel)]="scale"></nz-slider>
-    </nz-col>
-    <div nz-col nzSpan="4">
-        <nz-input-number
-        [nzMin]="1"
-        [nzMax]="20"
-        [ngStyle]="{ marginLeft: '16px' }"
-        [(ngModel)]="scale"
-        (ngModelChange)="scaleGeometry()"
-        ></nz-input-number>
+<div nz-row class="engine-wrapper">
+    <div nz-col [nzSpan]="18" [nzPush]="6">
+        <canvas #rendererCanvas></canvas>
     </div>
-</nz-row>
-<canvas #rendererCanvas></canvas>
+    <div nz-col [nzSpan]="6" [nzPull]="18">
+        <div nz-row>
+            <div nz-col [nzSpan]="18" [nzPush]="6">
+            <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('GLTF')">
+                <i nz-icon nzType="download"></i>GLTF
+            </button>
+            </div>
+            <div nz-col  [nzSpan]="6" [nzPull]="18">
+                <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('OBJ')">
+                    <i nz-icon nzType="download"></i>OBJ
+                </button>
+            </div>
+        </div>
+        <div nz-row>
+            <div nz-col [nzSpan]="18" [nzPush]="6">
+                <nz-slider [nzMin]="1" [nzMax]="10" [(ngModel)]="scale"></nz-slider>
+            </div>
+            <div nz-col [nzSpan]="6" [nzPull]="18">
+                <nz-input-number
+                [nzMin]="1"
+                [nzMax]="20"
+                [(ngModel)]="scale"
+                (ngModelChange)="scaleGeometry()"
+                [nzSize]="size"
+                ></nz-input-number>
+            </div>
+        </div>
+        <div nz-row>
+            <div nz-col [nzSpan]="6" [nzPull]="18">
+                <nz-input-number
+                [nzMin]="1"
+                [nzMax]="20"
+                [(ngModel)]="scale"
+                (ngModelChange)="renderModel()"
+                [nzSize]="size"
+                ></nz-input-number>
+            </div>
+        </div>
+    </div>
 </div>

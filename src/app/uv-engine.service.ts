@@ -23,19 +23,21 @@ export class UvEngineService implements OnDestroy{
   createScene(canvasElementRef: ElementRef<HTMLCanvasElement>, a: {x:number, y: number}, dw: number, dl: number, dh: number, scale: number, imageSrc: string) { 
     // The first step is to get the reference of the canvas element from our HTML document
     this.canvas = canvasElementRef.nativeElement;
-
+    const aspect = this.canvas.width/this.canvas.height; 
+    
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       alpha: true,    // transparent background
       antialias: true // smooth edges
     });
-    this.renderer.setSize(900, 700);
+    // this.renderer.setSize(900, 700);
+    this.renderer.setSize(this.canvas.width*2, this.canvas.height*2, false);
+    
 
     // create the scene
     this.scene = new THREE.Scene();
-
     this.camera = new THREE.PerspectiveCamera(
-      75, window.innerWidth / window.innerHeight, 0.1, 1000
+      75, aspect, 0.1, 1000
     );
     this.camera.position.z = 5;
     this.scene.add(this.camera);
@@ -128,7 +130,6 @@ export class UvEngineService implements OnDestroy{
         texture.image = canvas;
         texture.needsUpdate = true;
       };
-      console.log(imageSrc);
       image.src = imageSrc;
     }
     return new THREE.MeshBasicMaterial({map: texture});

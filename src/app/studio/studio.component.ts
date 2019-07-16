@@ -19,23 +19,29 @@ export class StudioComponent implements OnInit {
   @ViewChild('rendererCanvas', {static: true})
   public rendererCanvas: ElementRef<HTMLCanvasElement>;
   
-  size = 'large';
+  size = 'small';
+
+  model: Model;
 
   constructor(private el:ElementRef, private uvEngineService: UvEngineService, private modelSubjectService: ModelSubjectService) { }
 
   ngOnInit() {
-    const model = this.modelSubjectService.model().subscribe((model) => {
+    this.modelSubjectService.model().subscribe((model) => {
+      this.model = model;
       if (model){
-        this.draw(model.name, model.a, model.b, model.h);
-        this.uvEngineService.render();
+        this.renderModel();
       }
-    })
+    });
   }
   draw(image: string, a: ModelPoint, b: ModelPoint, h: ModelPoint) {
     const dw = b.x - a.x;
     const dl = h.x - b.x;
     const dh = h.y - a.y;
     this.uvEngineService.createScene(this.rendererCanvas, a, dw, dl, dh, this.scale, image);
+  }
+  renderModel(){
+    this.draw(this.model.name, this.model.a, this.model.b, this.model.h);
+    this.uvEngineService.render();
   }
   scaleGeometry(){
     this.uvEngineService.scale(this.scale);
