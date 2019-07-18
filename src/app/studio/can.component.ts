@@ -10,6 +10,8 @@ import { ModelSubjectService } from '../model-subject.service';
 })
 export class CanComponent extends BaseUvEngine implements OnInit{
 
+  size = 'small';
+
   imageSrc: string;
   
   constructor(private modelSubjectService: ModelSubjectService){

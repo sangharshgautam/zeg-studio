@@ -15,6 +15,8 @@ export class BoxComponent extends BaseUvEngine implements  OnInit {
 
   scale = 1;
 
+  size = 'small';
+  
   constructor(private modelSubjectService: ModelSubjectService){
     super();
   }
