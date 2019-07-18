@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
@@ -18,6 +17,10 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { StudioComponent } from './studio/studio.component';
 import { BoxWizardComponent } from './box-wizard/box-wizard.component';
 import { GloalErrorHandler } from './global-error-handler';
+import { CanComponent } from './studio/can.component';
+import { CanSamplesComponent } from './can-samples/can-samples.component';
+import { BoxSamplesComponent } from './box-samples/box-samples.component';
+import { CanWizardComponent } from './can-wizard/can-wizard.component';
 
 registerLocaleData(en);
 
@@ -31,7 +34,11 @@ registerLocaleData(en);
     SideNavComponent,
     BreadcrumbComponent,
     StudioComponent,
-    BoxWizardComponent
+    BoxWizardComponent,
+    CanComponent,
+    CanSamplesComponent,
+    BoxSamplesComponent,
+    CanWizardComponent
   ],
   imports: [
     BrowserModule,

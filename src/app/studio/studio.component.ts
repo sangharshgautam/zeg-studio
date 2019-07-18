@@ -27,7 +27,7 @@ export class StudioComponent implements OnInit {
 
   ngOnInit() {
     this.modelSubjectService.model().subscribe((model) => {
-      this.model = model;
+      this.model = model as Model;
       if (model){
         this.renderModel();
       }

@@ -7,13 +7,13 @@ import { Model } from './studio/model';
 })
 export class ModelSubjectService {
 
-  subject = new BehaviorSubject<Model>(null);
+  subject = new BehaviorSubject<Model | string>(null);
 
   constructor() { }
-  load(model: Model) {
+  load(model: Model | string) {
     this.subject.next(model);
   }
-  model(): Observable<Model> {
+  model(): Observable<Model | string> {
     return this.subject.asObservable();
   }
 }
