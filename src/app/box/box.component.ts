@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Model } from '../studio/model';
 import { ModelSubjectService } from '../model-subject.service';
 import { BaseUvEngine } from '../studio/abstract-uv.service';
@@ -11,22 +11,18 @@ import { BaseUvEngine } from '../studio/abstract-uv.service';
 })
 export class BoxComponent extends BaseUvEngine implements  OnInit {
 
+  @Input()
   model: Model;
 
   scale = 1;
 
   size = 'small';
-  
-  constructor(private modelSubjectService: ModelSubjectService){
+
+  constructor(){
     super();
   }
   ngOnInit() {
-    this.modelSubjectService.model().subscribe((model) => {
-      if(model){
-        this.model = model as Model;
-        super.createScene();
-      }
-    });
+    super.createScene();
   }
   createObject() {
     const ma = this.model.a;
@@ -42,7 +38,7 @@ export class BoxComponent extends BaseUvEngine implements  OnInit {
     const geometry = new THREE.BoxGeometry(l, h, w);
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 
-    const imageSrc = this.model.name;
+    const imageSrc = '/sample/textures/box/'+this.model.name;
 
     const materialArray = this.loadTextureMaterial(imageSrc, ma, dw, dl, dh);
     this.object = new THREE.Mesh( geometry, materialArray );
