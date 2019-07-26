@@ -44,7 +44,7 @@ export abstract class BaseUvEngine implements OnDestroy {
         this.setRenderer();
         this.setMouseControls();
         this.setLight();
-        //this.setGridHelper();
+        this.setGridHelper();
         this.createObject()
         //this.scene.add(this.camera);
         this.render();

@@ -1,21 +1,16 @@
-<div nz-row nzGutter="8">
-    <div nz-col nzSpan="4">
-        <form nz-form>
-            <div nz-row nzGutter="8">
-                <div nz-col nzSpan="12">
-                    <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('GLTF')">
-                        <i nz-icon nzType="download"></i>GLTF
-                    </button>
-                </div>
-                <div nz-col nzSpan="12">
-                    <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('OBJ')">
-                        <i nz-icon nzType="download"></i>OBJ
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div nz-col nzSpan="20">
+<div nz-row>
+    <div nz-col nzSpan="8">
         <canvas #rendererCanvas></canvas>
     </div>
+    
 </div>
+<div nz-row [nzGutter]="8">
+        <div nz-col [nzSpan]="8" *ngFor="let box of boxes">
+          <nz-card nzTitle="{{box.name}}" [nzCover]="coverTemplate" [nzLoading]="true">
+                <nz-card-meta nzTitle="{{box.name}}" nzDescription="www.instagram.com"></nz-card-meta>
+          </nz-card>
+          <ng-template #coverTemplate>
+                <img alt="example" src="/sample/textures/box/Frosted Flakes.jpg" />
+              </ng-template>
+        </div>
+      </div>
