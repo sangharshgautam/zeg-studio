@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { BaseUvEngine } from './abstract-uv.service';
 import { ModelSubjectService } from '../model-subject.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-can',
@@ -13,7 +14,8 @@ export class CanComponent extends BaseUvEngine implements OnInit{
   size = 'small';
 
   imageSrc: string;
-  
+  visible = true;
+  validateForm: FormGroup;
   constructor(private modelSubjectService: ModelSubjectService){
     super();
   }
@@ -61,5 +63,18 @@ export class CanComponent extends BaseUvEngine implements OnInit{
       latheGeom.attributes.uv.setY(i, latheGeom.attributes.position.getY(i) > 2.5 ? 1 : 0);
     }
     return latheGeom;
+  }
+  open(): void {
+    this.visible = true;
+  }
+
+  close(): void {
+    this.visible = false;
+  }
+  dimensionChanged(){
+    this.resize();
+  }
+  private resize(){
+
   }
 }

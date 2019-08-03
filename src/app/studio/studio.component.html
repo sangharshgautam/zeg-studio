@@ -1,21 +1,58 @@
-<div nz-row nzGutter="8">
-    <div nz-col nzSpan="4">
-        <form nz-form>
-            <div nz-row nzGutter="8">
-                <div nz-col nzSpan="12">
-                    <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('GLTF')">
-                        <i nz-icon nzType="download"></i>GLTF
-                    </button>
-                </div>
-                <div nz-col nzSpan="12">
-                    <button nz-button nzType="primary" [nzSize]="size" nzShape="round" (click)="export('OBJ')">
-                        <i nz-icon nzType="download"></i>OBJ
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div nz-col nzSpan="20">
-        <canvas #rendererCanvas></canvas>
-    </div>
-</div>
+<nz-layout>    
+    <nz-layout>
+        <button nz-button nzType="primary" (click)="open()">Open</button>
+        <nz-content>
+            <canvas #rendererCanvas></canvas>
+        </nz-content>
+    </nz-layout>
+    <nz-drawer
+      [nzClosable]="false"
+      nzPlacement="right"
+      nzTitle="Settings"
+      (nzOnClose)="close()"
+    >
+    <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="width">Width</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                <nz-input-number
+                [nzMin]="1"
+                [nzMax]="10"
+                [ngStyle]="{ marginLeft: '5px' }"
+                formControlName="width"
+                [nzSize] = "'small'"
+                (ngModelChange)="dimensionChanged()"
+                ></nz-input-number>
+                <!-- <nz-slider [nzMin]="0" [nzMax]="1" [nzStep]="0.01" formControlName="length"></nz-slider> -->
+            </nz-form-control>
+        </nz-form-item>
+        
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="height">Height</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                    <nz-input-number
+                    [nzMin]="1"
+                    [nzMax]="10"
+                    [ngStyle]="{ marginLeft: '5px' }"
+                    formControlName="height"
+                    [nzSize] = "'small'"
+                    (ngModelChange)="dimensionChanged()"
+                    ></nz-input-number>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="depth">Depth</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                    <nz-input-number
+                    [nzMin]="1"
+                    [nzMax]="10"
+                    [ngStyle]="{ marginLeft: '5px' }"
+                    formControlName="depth"
+                    [nzSize] = "'small'"
+                    (ngModelChange)="dimensionChanged()"
+                    ></nz-input-number>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+    </nz-drawer>
+</nz-layout>
