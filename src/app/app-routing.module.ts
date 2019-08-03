@@ -9,7 +9,7 @@ import { CanWizardComponent } from './can-wizard/can-wizard.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'sutdio', pathMatch: 'full'},
+  {path: '', redirectTo: 'box/samples', pathMatch: 'full'},
   { path: 'scratchpad', component: ScratchpadComponent},
   { path: 'box/samples', component: BoxSamplesComponent},
   { path: 'box/wizard', component: BoxWizardComponent},
