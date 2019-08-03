@@ -20,7 +20,7 @@ export abstract class BaseUvEngine implements OnDestroy {
         const aspect = this.canvas.width/this.canvas.height;
         //const aspect = window.innerWidth / window.innerHeight;
         this.camera = new THREE.PerspectiveCamera(60, aspect, 1, 1000);
-        this.camera.position.set(0, 5, 10);
+        this.camera.position.set(0, 0, 5);
     }
     setRenderer() {
         this.renderer = new THREE.WebGLRenderer({
@@ -33,6 +33,10 @@ export abstract class BaseUvEngine implements OnDestroy {
     }
     createScene() {
         this.canvas = this.rendererCanvas.nativeElement;
+        this.canvas.style.width = '100%';
+        this.canvas.style.height = '100%';
+        this.canvas.width = this.canvas.offsetWidth;
+        this.canvas.height = this.canvas.offsetHeight+150;
 
         this.scene = new THREE.Scene();
         //Add Camera
@@ -40,7 +44,7 @@ export abstract class BaseUvEngine implements OnDestroy {
         this.setRenderer();
         this.setMouseControls();
         this.setLight();
-        this.setGridHelper();
+        //this.setGridHelper();
         this.createObject()
         //this.scene.add(this.camera);
         this.render();
@@ -66,8 +70,8 @@ export abstract class BaseUvEngine implements OnDestroy {
         this.frameId = requestAnimationFrame(() => {
             this.render();
         });
-        //this.cube.rotation.x +=0.01;
-        //this.cube.rotation.y +=0.01;
+        //this.object.rotation.x +=0.01;
+        //this.object.rotation.y +=0.01;
         this.renderer.render(this.scene, this.camera);
     }
     ngOnDestroy() {

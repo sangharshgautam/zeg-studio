@@ -28,6 +28,6 @@ export class StudioComponent extends BaseUvEngine implements  OnInit {
   }
   ngOnInit() {
     super.createScene();
-    this.setGridHelper();
+    //this.setGridHelper();
   }
 }
