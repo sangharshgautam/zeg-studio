@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Zeg Studio';
-  isCollapsed = true;
+  title = 'zeg-studio';
 }

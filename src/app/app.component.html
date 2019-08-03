@@ -6,15 +6,15 @@
 <nz-layout>
   <app-header></app-header>
   <nz-layout>
-    <nz-sider nzWidth="230px" nzTheme="light" [(nzCollapsed)]="isCollapsed">
-      <ul nz-menu nzMode="inline" class="sider-menu" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
-        <li nz-submenu nzOpen nzTitle="Studio" nzIcon="experiment">
+    <nz-sider nzWidth="230px" nzTheme="light">
+      <ul nz-menu nzMode="inline" class="sider-menu" nzTheme="dark">
+        <li nz-submenu nzOpen nzIcon="codepen" nzTitle="Samples">
           <ul>
             <li nz-menu-item><a routerLink="/studio" routerLinkActive="active">Fruity Pebbles Marshmallow</a></li>
             <li nz-menu-item><a routerLink="/threejs">ThreeJs</a></li>
           </ul>
         </li>
-        <li nz-submenu nzTitle="Box" nzIcon="border">
+        <li nz-submenu nzTitle="Box" nzIcon="codepen">
           <ul>
             <li nz-menu-item><a routerLink="/box/samples" routerLinkActive="active">Samples</a></li>
             <li nz-menu-item><a routerLink="/box/wizard" routerLinkActive="active">Wizard</a></li>

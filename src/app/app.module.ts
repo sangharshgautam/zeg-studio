@@ -21,7 +21,6 @@ import { CanComponent } from './studio/can.component';
 import { CanSamplesComponent } from './can-samples/can-samples.component';
 import { BoxSamplesComponent } from './box-samples/box-samples.component';
 import { CanWizardComponent } from './can-wizard/can-wizard.component';
-import { ModelCardComponent } from './model-card/model-card.component';
 
 registerLocaleData(en);
 
@@ -39,8 +38,7 @@ registerLocaleData(en);
     CanComponent,
     CanSamplesComponent,
     BoxSamplesComponent,
-    CanWizardComponent,
-    ModelCardComponent
+    CanWizardComponent
   ],
   imports: [
     BrowserModule,
