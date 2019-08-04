@@ -46,6 +46,7 @@ export class StudioComponent extends BaseUvEngine implements  OnInit {
 
   open(): void {
     this.visible = true;
+    console.log('HELLPO');
   }
 
   close(): void {

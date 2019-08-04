@@ -7,6 +7,7 @@
     </nz-layout>
     <nz-drawer
       [nzClosable]="false"
+      [nzVisible]="visible"
       nzPlacement="right"
       nzTitle="Settings"
       (nzOnClose)="close()"
@@ -18,6 +19,7 @@
                 <nz-input-number
                 [nzMin]="1"
                 [nzMax]="10"
+                [nzStep]="0.1"
                 [ngStyle]="{ marginLeft: '5px' }"
                 formControlName="width"
                 [nzSize] = "'small'"
@@ -33,6 +35,7 @@
                     <nz-input-number
                     [nzMin]="1"
                     [nzMax]="10"
+                    [nzStep]="0.1"
                     [ngStyle]="{ marginLeft: '5px' }"
                     formControlName="height"
                     [nzSize] = "'small'"
@@ -46,11 +49,18 @@
                     <nz-input-number
                     [nzMin]="1"
                     [nzMax]="10"
+                    [nzStep]="0.1"
                     [ngStyle]="{ marginLeft: '5px' }"
                     formControlName="depth"
                     [nzSize] = "'small'"
                     (ngModelChange)="dimensionChanged()"
                     ></nz-input-number>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row class="register-area">
+            <nz-form-control [nzSpan]="14" [nzOffset]="6">
+                <button nz-button nzType="primary" (click)="export('GLTF')">
+                    <i nz-icon nz-type="export"></i>Export</button>
             </nz-form-control>
         </nz-form-item>
     </form>
